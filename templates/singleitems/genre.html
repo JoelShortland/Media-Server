@@ -1,0 +1,95 @@
+{% include 'top.html' %}
+<div class="content">
+    <div class="container details">
+        {% if genreitems | length > 0 %}
+        {% if type == 'film' %}
+        <h3> List of {{genreid}} tv shows </h3>
+        <table class="styled">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for instance in genreitems %}
+            {% if instance.type == 'tvshow' %}
+            <tr class="clickable-tr" data-href="{{ url_for('single_tvshow', tvshow_id=instance.id)}}">
+                <td style="text-align: center">{{instance.id}}</td>
+                <td>{{instance.title}}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <h3> List of {{genreid}} movies </h3>
+        <table class="styled">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for instance in genreitems %}
+            {% if instance.type == 'movie' %}
+            <tr class="clickable-tr" data-href="{{ url_for('single_movie', movie_id=instance.id)}}">
+                <td style="text-align: center">{{instance.id}}</td>
+                <td>{{instance.title}}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+        {% elif type == 'song' %}
+        <h3> List of {{genreid}} songs</h3>
+        <table class="styled">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Artist</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for instance in genreitems %}
+            <tr class="clickable-tr" data-href="{{ url_for('single_song', song_id=instance.id)}}">
+                <td style="text-align: center">{{instance.id}}</td>
+                <td>{{instance.title}}</td>
+                <td>{{instance.artist_name}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% elif type == 'podcast' %}
+        <h3> List of {{genreid}} podcasts</h3>
+        <table class="styled">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Last Updated</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for instance in genreitems %}
+            <tr class="clickable-tr" data-href="{{ url_for('single_podcast', podcast_id=instance.id)}}">
+                <td style="text-align: center">{{instance.id}}</td>
+                <td>{{instance.title}}</td>
+                <td>{{instance.last_updated}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        <!-- TODO Query (10) -->
+        <!-- First check should be a valid instance -->
+        <!-- Second check should be what type of genre? -->
+
+        {% else %}
+        <h2 class="title"> Invalid Genre ID</h2>
+        {% endif %}
+    </div>
+</div>
+{% include 'bottom.html'%}
