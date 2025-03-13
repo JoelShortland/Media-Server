@@ -1,0 +1,1 @@
+This was a media server created as part of an assignment for Usyd's ISYS2120. It uses a combination of Python, SQL, Flask and HTML to create a (local) website that allows for storing and managing the data and metadata of various video files. An ERD diagram is included to discribe how the different components interact.
